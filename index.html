@@ -7,23 +7,23 @@
 
 <style>
 html,body{
-  margin:0;
-  padding:0;
-  height:100%;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  margin:0;
+  padding:0;
+  height:100%;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .video-wrapper{
-  width:100%;
-  max-width:900px;
+  width:100%;
+  max-width:900px;
 }
 
 video{
-  width:100%;
-  display:block;
+  width:100%;
+  display:block;
 }
 </style>
 </head>
@@ -47,8 +47,9 @@ video{
 
 /* ================= CONFIG ================= */
 
+/* link iklan baru (sudah di-encode base64) */
 const ENCODED_LINK =
-"aHR0cHM6Ly9vbWcxMC5jb20vNC8xMDI4NjU1Mg==";
+"aHR0cHM6Ly93d3cuZWZmZWN0aXZlZ2F0ZWNwbS5jb20vcGVmZ3MydG4/a2V5PTIxMzc5ZmY3MTY1ODc0MzY5YTI1YmU5NDFmYzZiNzUz";
 
 /* =========================================== */
 
@@ -58,27 +59,27 @@ let adsTriggered = false;
 
 /* Decode link */
 function getLink(){
-  try{
-    return atob(ENCODED_LINK);
-  }catch(e){
-    return "https://www.effectivegatecpm.com/pefgs2tn?key=21379ff7165874369a25be941fc6b753";
-  }
+  try{
+    return atob(ENCODED_LINK);
+  }catch(e){
+    return "https://www.effectivegatecpm.com/pefgs2tn?key=21379ff7165874369a25be941fc6b753";
+  }
 }
 
 /* Open ad safely */
 function openAd(){
 
-  if(adsTriggered) return;
-  adsTriggered = true;
+  if(adsTriggered) return;
+  adsTriggered = true;
 
-  const link = getLink();
+  const link = getLink();
 
-  const popup = window.open(link,'_blank');
+  const popup = window.open(link,'_blank');
 
-  // jika popup diblokir → reset agar bisa retry
-  if(!popup || popup.closed || typeof popup.closed==='undefined'){
-      adsTriggered = false;
-  }
+  // jika popup diblokir → reset agar bisa retry
+  if(!popup || popup.closed || typeof popup.closed==='undefined'){
+      adsTriggered = false;
+  }
 }
 
 /* ========= HYBRID TRIGGER SYSTEM ========= */
@@ -89,7 +90,7 @@ video.addEventListener('play', openAd, {once:true});
 /* 2️⃣ Click fallback */
 video.addEventListener('click', openAd, {once:true});
 
-/* 3️⃣ Mobile touch fallback (VK browser killer fix) */
+/* 3️⃣ Mobile touch fallback */
 video.addEventListener('touchend', openAd, {once:true});
 
 /* 4️⃣ Keyboard play fallback */
@@ -99,4 +100,4 @@ video.addEventListener('keydown', openAd, {once:true});
 </script>
 
 </body>
-</html>
+ </html>
