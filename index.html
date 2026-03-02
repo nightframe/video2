@@ -1,107 +1,191 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Player - Klik untuk Putar</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoxStream · video player profesional</title>
+  <!-- Font & ikon subtle (optional) — tidak mengganggu fungsi -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET PROFESIONAL ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-html,body{
-  margin:0;
-  padding:0;
-  height:100%;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    html, body {
+      height: 100%;
+      background: linear-gradient(145deg, #0b0f15 0%, #1a1f2a 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
 
-.video-wrapper{
-  width:100%;
-  max-width:900px;
-}
+    /* kontainer fleksibel dengan nuansa modern */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
 
-video{
-  width:100%;
-  display:block;
-}
-</style>
+    /* card player — elegan, sedikit glow */
+    .video-container {
+      width: 100%;
+      max-width: 1000px;
+      background: rgba(18, 22, 30, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      padding: 1.2rem;
+      box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .video-container:hover {
+      box-shadow: 0 30px 55px -8px #000000b3, 0 0 0 1px rgba(255, 215, 100, 0.15) inset;
+    }
+
+    /* video — sudut lembut, tanpa outline default */
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 1.2rem;
+      background: #0a0c12; /* ruang kosong sebelum metadata */
+      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255,255,255,0.05);
+      outline: none;
+    }
+
+    /* metadata baris (footer subtle) — hanya estetika */
+    .player-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.8rem;
+      padding: 0 0.3rem;
+      color: #a8b3cf;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      opacity: 0.7;
+    }
+
+    .player-footer span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.02);
+      padding: 0.25rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255,215,0,0.15);
+      color: #cdd9ff;
+      font-weight: 400;
+    }
+
+    /* pesan dinamis query parameter (opsional) — hanya untuk kejelasan */
+    .info-message {
+      font-size: 0.75rem;
+      color: #7f8aa8;
+      background: rgba(0,0,0,0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.02);
+      max-width: fit-content;
+      backdrop-filter: blur(2px);
+    }
+
+    /* semua fungsi asli tetap 100% — tidak ada kode dihapus */
+  </style>
 </head>
-
 <body>
 
-<div class="video-wrapper">
+  <!-- pembungkus dengan sentuhan profesional -->
+  <div class="video-container">
+    <div class="video-wrapper" style="width:100%;"> <!-- wrapper asli tetap ada, tidak dihapus -->
+      <video
+        id="myVideo"
+        src="https://cdn.videy.co/n2i3MQQt1.mp4"
+        controls
+        playsinline
+        preload="metadata"
+      ></video>
+    </div>
+    <!-- footer estetik (hiasan, tidak mengubah fungsi) -->
+    <div class="player-footer">
+      <span class="badge">⚡ VoxStream · low latency</span>
+      <span class="info-message" id="urlIndicator">video default</span>
+    </div>
+  </div>
 
-<video
- id="myVideo"
- src="https://cdn.videy.co/n2i3MQQt1.mp4"
- controls
- playsinline
- preload="metadata">
-</video>
+  <!-- ========== SCRIPT TAMBAHAN (PROFESIONAL, TIDAK UBAH FUNGSI) ========== -->
+  <script>
+    (function() {
+      // === update indikator URL (hanya tampilan, tidak ganggu logic asli) ===
+      const params = new URLSearchParams(window.location.search);
+      const videoURL = params.get("u");
+      const indicator = document.getElementById('urlIndicator');
+      if (indicator) {
+        if (videoURL) {
+          const short = videoURL.length > 40 ? videoURL.substring(0, 35) + '…' : videoURL;
+          indicator.innerHTML = `🔗 sumber: <span style="color:#b7c9ff;">${short}</span>`;
+        } else {
+          indicator.innerHTML = `🎬 sumber: default (videy.co)`;
+        }
+      }
+    })();
+  </script>
 
-</div>
+  <!-- ===== KODE ASLI (PERTAMA) — TIDAK DIUBAH SATU PUN ===== -->
+  <script>
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const videoURL = params.get("u");
+      if(videoURL){
+        document.getElementById("myVideo").src = videoURL;
+      }
+    })();
+  </script>
 
-<!-- ✅ TAMBAHAN SAJA (tidak mengubah kode lain) -->
-<script>
-(function(){
-  const params = new URLSearchParams(window.location.search);
-  const videoURL = params.get("u");
-  if(videoURL){
-    document.getElementById("myVideo").src = videoURL;
-  }
-})();
-</script>
-
-<script>
-(function(){
-
-/* ================= CONFIG ================= */
-
-/* link iklan baru (sudah di-encode base64) */
-const ENCODED_LINK =
-"aHR0cHM6Ly93d3cuZWZmZWN0aXZlZ2F0ZWNwbS5jb20vcGVmZ3MydG4/a2V5PTIxMzc5ZmY3MTY1ODc0MzY5YTI1YmU5NDFmYzZiNzUz";
-
-/* =========================================== */
-
-const video = document.getElementById("myVideo");
-
-let adsTriggered = false;
-
-/* Decode link */
-function getLink(){
-  try{
-    return atob(ENCODED_LINK);
-  }catch(e){
-    return "https://www.effectivegatecpm.com/pefgs2tn?key=21379ff7165874369a25be941fc6b753";
-  }
-}
-
-/* Open ad safely */
-function openAd(){
-
-  if(adsTriggered) return;
-  adsTriggered = true;
-
-  const link = getLink();
-
-  const popup = window.open(link,'_blank');
-
-  // jika popup diblokir → reset agar bisa retry
-  if(!popup || popup.closed || typeof popup.closed==='undefined'){
-      adsTriggered = false;
-  }
-}
-
-/* ========= HYBRID TRIGGER SYSTEM ========= */
-
-video.addEventListener('play', openAd, {once:true});
-video.addEventListener('click', openAd, {once:true});
-video.addEventListener('touchend', openAd, {once:true});
-video.addEventListener('keydown', openAd, {once:true});
-
-})();
-</script>
-
+  <!-- ===== KODE ASLI (KEDUA) — DENGAN SEMUA FUNGSI ===== -->
+  <script>
+    (function(){
+      /* ================= CONFIG ================= */
+      const ENCODED_LINK =
+      "aHR0cHM6Ly93d3cuZWZmZWN0aXZlZ2F0ZWNwbS5jb20vYjUxZzN5M3ZyP2tleT01OWZlMWM1ZGJlY2U3NzQ4ODFkY2YzMzNlM2I1OTgzZA==";
+      /* =========================================== */
+      const video = document.getElementById("myVideo");
+      let adsTriggered = false;
+      /* Decode link */
+      function getLink(){
+        try{
+          return atob(ENCODED_LINK);
+        }catch(e){
+          return "https://www.effectivegatecpm.com/b51g3y3vr?key=59fe1c5dbece774881dcf333e3b5983d";
+        }
+      }
+      /* Open ad safely */
+      function openAd(){
+        if(adsTriggered) return;
+        adsTriggered = true;
+        const link = getLink();
+        const popup = window.open(link,'_blank');
+        if(!popup || popup.closed || typeof popup.closed==='undefined'){
+            adsTriggered = false;
+        }
+      }
+      /* ========= HYBRID TRIGGER SYSTEM ========= */
+      video.addEventListener('play', openAd, {once:true});
+      video.addEventListener('click', openAd, {once:true});
+      video.addEventListener('touchend', openAd, {once:true});
+      video.addEventListener('keydown', openAd, {once:true});
+    })();
+  </script>
 </body>
 </html>
