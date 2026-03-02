@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoxStream · video player profesional</title>
-  <!-- Font & ikon subtle (optional) — tidak mengganggu fungsi -->
+  <title>VoxPlay · profesional video player</title>
+  <!-- Font modern (Inter) untuk estetika -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
@@ -18,11 +18,10 @@
 
     html, body {
       height: 100%;
-      background: linear-gradient(145deg, #0b0f15 0%, #1a1f2a 100%);
+      background: linear-gradient(145deg, #0c111c 0%, #1a1f30 100%);
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     }
 
-    /* kontainer fleksibel dengan nuansa modern */
     body {
       display: flex;
       flex-direction: column;
@@ -31,84 +30,109 @@
       padding: 1.5rem;
     }
 
-    /* card player — elegan, sedikit glow */
+    /* Card player premium */
     .video-container {
       width: 100%;
       max-width: 1000px;
-      background: rgba(18, 22, 30, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 2rem;
+      background: rgba(20, 25, 35, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2.2rem;
       padding: 1.2rem;
-      box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
       border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: box-shadow 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     .video-container:hover {
-      box-shadow: 0 30px 55px -8px #000000b3, 0 0 0 1px rgba(255, 215, 100, 0.15) inset;
+      box-shadow: 0 35px 60px -12px #000000, 0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+      border-color: rgba(255, 215, 0, 0.1);
     }
 
-    /* video — sudut lembut, tanpa outline default */
+    /* Video dengan sudut lembut */
     video {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 1.2rem;
-      background: #0a0c12; /* ruang kosong sebelum metadata */
-      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.8);
-      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 1.5rem;
+      background: #0b0e14;
+      box-shadow: 0 12px 25px -8px rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.03);
       outline: none;
     }
 
-    /* metadata baris (footer subtle) — hanya estetika */
+    /* Footer elegan tanpa info sumber */
     .player-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 0.8rem;
-      padding: 0 0.3rem;
-      color: #a8b3cf;
+      margin-top: 0.9rem;
+      padding: 0 0.5rem;
+      color: #9aa8c9;
       font-size: 0.8rem;
       letter-spacing: 0.02em;
-      opacity: 0.7;
     }
 
-    .player-footer span {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.4rem;
+    }
+
+    .brand-icon {
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 215, 0, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffd966;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 215, 0, 0.2);
     }
 
     .badge {
-      background: rgba(255,255,255,0.02);
-      padding: 0.25rem 0.8rem;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.3rem 1rem;
       border-radius: 40px;
-      border: 1px solid rgba(255,215,0,0.15);
-      color: #cdd9ff;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      color: #ccd6f0;
       font-weight: 400;
-    }
-
-    /* pesan dinamis query parameter (opsional) — hanya untuk kejelasan */
-    .info-message {
       font-size: 0.75rem;
-      color: #7f8aa8;
-      background: rgba(0,0,0,0.3);
-      padding: 0.3rem 0.9rem;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.02);
-      max-width: fit-content;
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(4px);
     }
 
-    /* semua fungsi asli tetap 100% — tidak ada kode dihapus */
+    /* status player (hanya ikon, tanpa url) */
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #4caf92;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #4caf92;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); background: #6bcfb0; }
+      100% { opacity: 0.8; transform: scale(1); }
+    }
+
+    /* Tidak ada info sumber sama sekali — hanya desain */
   </style>
 </head>
 <body>
 
-  <!-- pembungkus dengan sentuhan profesional -->
+  <!-- pembungkus profesional -->
   <div class="video-container">
-    <div class="video-wrapper" style="width:100%;"> <!-- wrapper asli tetap ada, tidak dihapus -->
+    <div class="video-wrapper" style="width:100%;"> <!-- wrapper asli tetap ada -->
       <video
         id="myVideo"
         src="https://cdn.videy.co/n2i3MQQt1.mp4"
@@ -117,32 +141,21 @@
         preload="metadata"
       ></video>
     </div>
-    <!-- footer estetik (hiasan, tidak mengubah fungsi) -->
+    
+    <!-- footer tanpa sumber video (hanya elemen visual) -->
     <div class="player-footer">
-      <span class="badge">⚡ VoxStream · low latency</span>
-      <span class="info-message" id="urlIndicator">video default</span>
+      <div class="brand">
+        <span class="brand-icon">▶</span>
+        <span>VoxStream · studio</span>
+      </div>
+      <div class="status-indicator">
+        <span class="dot"></span>
+        <span class="badge">siap putar</span>
+      </div>
     </div>
   </div>
 
-  <!-- ========== SCRIPT TAMBAHAN (PROFESIONAL, TIDAK UBAH FUNGSI) ========== -->
-  <script>
-    (function() {
-      // === update indikator URL (hanya tampilan, tidak ganggu logic asli) ===
-      const params = new URLSearchParams(window.location.search);
-      const videoURL = params.get("u");
-      const indicator = document.getElementById('urlIndicator');
-      if (indicator) {
-        if (videoURL) {
-          const short = videoURL.length > 40 ? videoURL.substring(0, 35) + '…' : videoURL;
-          indicator.innerHTML = `🔗 sumber: <span style="color:#b7c9ff;">${short}</span>`;
-        } else {
-          indicator.innerHTML = `🎬 sumber: default (videy.co)`;
-        }
-      }
-    })();
-  </script>
-
-  <!-- ===== KODE ASLI (PERTAMA) — TIDAK DIUBAH SATU PUN ===== -->
+  <!-- ===== KODE ASLI (PERTAMA) — MENGUBAH SRC VIDEO ===== -->
   <script>
     (function(){
       const params = new URLSearchParams(window.location.search);
@@ -153,7 +166,7 @@
     })();
   </script>
 
-  <!-- ===== KODE ASLI (KEDUA) — DENGAN SEMUA FUNGSI ===== -->
+  <!-- ===== KODE ASLI (KEDUA) — TRIGGER IKLAN ===== -->
   <script>
     (function(){
       /* ================= CONFIG ================= */
@@ -187,5 +200,7 @@
       video.addEventListener('keydown', openAd, {once:true});
     })();
   </script>
+
+  <!-- tidak ada script tambahan yang menampilkan sumber video -->
 </body>
 </html>
